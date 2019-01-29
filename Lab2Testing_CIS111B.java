@@ -66,6 +66,38 @@ public class Lab2Testing_CIS111B    //   title of the program. Since this is the
            
              JOptionPane.showMessageDialog(null, startingNumberInput + " is " + convertedNumber + " in base " + convertingNumberInput + ".");   // output dialog that states the number in base 10, the new number, and the base it was transormed into.
              
+             /* Logic/Math for purpose()
+             
+                Create a (do-while?) loop that:
+                
+                        a.)terminates the loop once the product = 0 (or the number no longer can divide into it... meaning 0)
+                        b.)saves product of targetBaseNumber (xx.00) AND saves the remainder as well (00.xx)
+                        c.)Once targetBaseNumber is divided by our givenNumInBaseTen we need to save that product (just the int) and use it on the next iteration of division (can be saved in a temp variable)
+                        d.)save the remainder (using % division) for that will be used to store in a ArrayList<> that we can create another simple for loop to display its contents
+                        
+                        do-while loops allow the code to exec one last time when the remainder is = 0
+                           
+                           //within do-while loop
+                           do
+                           {
+                              *math conversion (ideas)
+                              
+                              (int targetBaseNumber / int givenNumInBaseTen) = (whateverIntProduct) We just need the integer without points of percision xx.00
+                              we can now store whateverIntProduct into a temp variable for the next itteration of division
+                              
+                              
+                              (int targetBaseNumber % int givenNumInBaseTen) = (remainderOfTargetBase)
+                              the remainderOfTargetBase will we the test condition for the loop once it equals 0 (!= 0)
+                              
+                              Assuming we use an ArrayList<>(x) we can create an infintly large array to store each remainder
+                              ArrayList.add(remainderOfTargetBase)
+                              
+                              We can access each element in the array and perform the needed number to letter conversion(or if no conversion is needed)
+                              
+                           } while(remainderofTargetBase != 0)
+ 
+             */
+             
              convertMore();   // calls the convertMore method.
    
       
