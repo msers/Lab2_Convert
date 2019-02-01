@@ -15,7 +15,7 @@ I think we can do this with a loop of some kind but I am not sure how we are goi
 
 import javax.swing.*;   // imports the entirety of swing into the program. If avaliable I just use .* in case I need to use somehting else within the package.
 
-public class Lab2Testing_CIS111B    //   title of the program. Since this is the file I do testing in for the labs I just use LavXTesting. I also have all of my CIS111A stuff on my pc still, so I add _CIS111B so I don't resave over my old code.
+public class Lab2Testing_CIS111B_2    //   title of the program. Since this is the file I do testing in for the labs I just use LavXTesting. I also have all of my CIS111A stuff on my pc still, so I add _CIS111B so I don't resave over my old code.
     
     {
    
@@ -23,87 +23,96 @@ public class Lab2Testing_CIS111B    //   title of the program. Since this is the
          
          {
             
-            purpose();  // call to the purpose method. This method holds most of the code for the purpose of the project.     
+           
+            purpose(); 
+  
               
          }
          
-      public static void purpose() //  the purpose method
+      public static void purpose()
       
          {
-      
-             String startingNumberInput = JOptionPane.showInputDialog(null,"What number, in base 10, do you want to convert?");  // dialog box that asks the user to input the base 10 number and holds the number as a string.
-              
-             String convertingNumberInput = JOptionPane.showInputDialog(null,"What base do you want to convert " + startingNumberInput + " to?");  // dialog box that asks the user to input the new base to convert startingNumberInput into.
-           
-             int startingNumber = Integer.parseInt(startingNumberInput);   // converts the string startingNumberInput into an integer.
-           
-             int convertingNumber = Integer.parseInt(convertingNumberInput);  // converts the string convertingNumberInput into an integer.
-           
-             String convertedNumber = Integer.toString(startingNumber, convertingNumber); // string that uses the Integer.toString method to convert startingNumber into the number in the new base.
-           
-             JOptionPane.showMessageDialog(null, startingNumberInput + " is " + convertedNumber + " in base " + convertingNumberInput + ".");   // output dialog that states the number in base 10, the new number, and the base it was transormed into.
+         
+            int startingNumber = 0;
+            
+            int convertingNumber = 0;
+            
+            do
+               
+               {
+               
+               String startingNumberInput = JOptionPane.showInputDialog(null,"What non-negative whole number, in base 10, do you want to convert?");  // dialog box that asks the user to input the base 10 number and holds the number as a string.
+               
+                  if(startingNumberInput.equals("")) 
+                  
+                        {
+                        
+                        purpose();
+                        
+                  
+                        }
+               
+               startingNumber = Integer.parseInt(startingNumberInput);
+               
+               if (startingNumber == 0)
              
-             convertMore();   // calls the convertMore method.
-   
-      
+               {
+               
+                  JOptionPane.showMessageDialog(null, "0 will always be 0, no matter what base it is in.");
+                  
+                  convertMore();
+                  
+                  
+               }
+               
+               } while (startingNumber < 0);
+         
+            
+            do
+               
+               {
+               
+               String convertingNumberInput = JOptionPane.showInputDialog(null,"Please enter a positive whole number between 2 and 16 to use as the new base?");  // dialog box that asks the user to input the new base to convert startingNumberInput into.
+               
+               convertingNumber = Integer.parseInt(convertingNumberInput);
+               
+               } while (convertingNumber < 2 || convertingNumber > 16);
+            
+            calculator(startingNumber, convertingNumber);
+         
          }
          
+      public static void calculator(int x, int y)
+      
+         {
+         
+         int unchangingX = x;
+         
+         System.out.println(x + " " + y);
+         
+         System.exit(0);
          /*
          
-         public static void purpose() //  the purpose method. ****** THIS ONE HAS EVERYTHING CONVERTED TO DOUBLES. String convertedNumber = Double.toString(startingNumber, convertingNumber); DOES NOT WORK PROPERLY.  ****** 
-      
-         {
-      
-             String startingNumberInput = JOptionPane.showInputDialog(null,"What number, in base 10, do you want to convert?");  // dialog box that asks the user to input the base 10 number and holds the number as a string.
-              
-             String convertingNumberInput = JOptionPane.showInputDialog(null,"What base do you want to convert " + startingNumberInput + " to?");  // dialog box that asks the user to input the new base to convert startingNumberInput into.
-           
-             double startingNumber = Double.parseDouble(startingNumberInput);   // converts the string startingNumberInput into an integer.
-           
-             double convertingNumber = Double.parseDouble(convertingNumberInput);  // converts the string convertingNumberInput into an integer.
-           
-             String convertedNumber = Double.toString(startingNumber, convertingNumber); // string that uses the Integer.toString method to convert startingNumber into the number in the new base.
-           
-             JOptionPane.showMessageDialog(null, startingNumberInput + " is " + convertedNumber + " in base " + convertingNumberInput + ".");   // output dialog that states the number in base 10, the new number, and the base it was transormed into.
-             
-             /* Logic/Math for purpose()
-             
-                Create a (do-while?) loop that:
-                
-                        a.)terminates the loop once the product = 0 (or the number no longer can divide into it... meaning 0)
-                        b.)saves product of targetBaseNumber (xx.00) AND saves the remainder as well (00.xx)
-                        c.)Once targetBaseNumber is divided by our givenNumInBaseTen we need to save that product (just the int) and use it on the next iteration of division (can be saved in a temp variable)
-                        d.)save the remainder (using % division) for that will be used to store in a ArrayList<> that we can create another simple for loop to display its contents
-                        
-                        do-while loops allow the code to exec one last time when the remainder is = 0
-                           
-                           //within do-while loop
-                           do
-                           {
-                              *math conversion (ideas)
-                              
-                              (int targetBaseNumber / int givenNumInBaseTen) = (whateverIntProduct) We just need the integer without points of percision xx.00
-                              we can now store whateverIntProduct into a temp variable for the next itteration of division
-                              
-                              
-                              (int targetBaseNumber % int givenNumInBaseTen) = (remainderOfTargetBase)
-                              the remainderOfTargetBase will we the test condition for the loop once it equals 0 (!= 0)
-                              
-                              Assuming we use an ArrayList<>(x) we can create an infintly large array to store each remainder
-                              ArrayList.add(remainderOfTargetBase)
-                              
-                              We can access each element in the array and perform the needed number to letter conversion(or if no conversion is needed)
-                              
-                           } while(remainderofTargetBase != 0)
- 
-             */
-             
-             convertMore();   // calls the convertMore method.
-   
-      
-         }
+         Things to add:
+            
+            >  Modulous Division finding r
+            
+            >  Regular Division finding z
+            
+            >  Loop to hold the remainder (r)
+            
+               > arrayList
+            
+            >  Loop to hold the new quotient (z)
+            
+            >  Way to make x be the new z
+            
+            
+         
          
          */
+         
+         }
          
       public static void convertMore() // the convertMore method.
       
