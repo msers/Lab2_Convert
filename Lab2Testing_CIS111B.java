@@ -12,21 +12,19 @@ I think we can do this with a loop of some kind but I am not sure how we are goi
 
 */
 
-
+import java.util.*;
 import javax.swing.*;   // imports the entirety of swing into the program. If avaliable I just use .* in case I need to use somehting else within the package.
 
-public class Lab2Testing_CIS111B_2    //   title of the program. Since this is the file I do testing in for the labs I just use LavXTesting. I also have all of my CIS111A stuff on my pc still, so I add _CIS111B so I don't resave over my old code.
+public class Lab2Testing_CIS111B    //   title of the program. Since this is the file I do testing in for the labs I just use LavXTesting. I also have all of my CIS111A stuff on my pc still, so I add _CIS111B so I don't resave over my old code.
     
     {
    
       public static void main(String[] args) // main method.
          
          {
-            
            
             purpose(); 
-  
-              
+     
          }
          
       public static void purpose()
@@ -61,13 +59,11 @@ public class Lab2Testing_CIS111B_2    //   title of the program. Since this is t
                   JOptionPane.showMessageDialog(null, "0 will always be 0, no matter what base it is in.");
                   
                   convertMore();
-                  
-                  
+                                   
                }
                
                } while (startingNumber < 0);
          
-            
             do
                
                {
@@ -85,10 +81,76 @@ public class Lab2Testing_CIS111B_2    //   title of the program. Since this is t
       public static void calculator(int x, int y)
       
          {
+            System.out.println(x + " " + y); // checking console to make sure correct variables are being passed (startingNumber, convertingNumnber)
+            
+            // int x -> startingNumber
+            // int y -> convertingNumber
          
-         int unchangingX = x;
+         ArrayList<String> printArrayList = new ArrayList<>(); // ArrayList for printing the array with converted numbers to letters
          
-         System.out.println(x + " " + y);
+         ArrayList<Integer> convertingArrayList = new ArrayList<>(); // ArrayList for conversion
+         
+         ///////////////
+         /// variable declaration
+         ///////////////
+         
+         int unchangingX = x; // not sure
+         
+         int remainder= 0; // for convertingArrayList.add(remainder)
+         
+         int z = 0; // quotient of integer division
+         
+         ///////////////
+         /// end of variable decl
+         ///////////////
+         
+         
+         ///////// Do-While Loop for storing remainders into array
+         do
+            {
+            
+            z = (x / y); // Quotient from integer division
+            
+            remainder = (x % y); // Remainder from integer division
+            
+            convertingArrayList.add(remainder); // storing remainder into convertArray
+                        
+            x = z; // reassinging z to x for next itteration of division
+            
+            System.out.println("r = "+remainder);  //test print for remainder
+            System.out.println("quotient = "+z);   //test print for quotient
+            
+            } while (x != 0);
+         ///////// End of Do-While Loop
+            
+                  
+               System.out.println(convertingArrayList); //[x, y, z] style print in wrong order (need to collection.reverseOrder)
+            
+            
+         ///////// Hexdeci handling
+            for (int i = 0; i < convertingArrayList.size(); i++) //reads in arrayList and compares characters greater than 10 and converts to corresponding letter
+            {
+            
+               if(convertingArrayList.get(i) == 10)
+               {
+               
+                  String.valueOf(convertingArrayList.get(i));
+                  
+               }
+               
+               else if(convertingArrayList.get(i) == 11)
+               
+               {
+                  
+                  
+               }
+               
+                  // System.out.println(i); //checks make sure its looping the correct amount of times
+                           
+            }
+      
+         
+         convertMore();
          
          System.exit(0);
          /*
@@ -107,9 +169,6 @@ public class Lab2Testing_CIS111B_2    //   title of the program. Since this is t
             
             >  Way to make x be the new z
             
-            
-         
-         
          */
          
          }
