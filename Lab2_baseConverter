@@ -1,21 +1,15 @@
 /*
-
-This code mostly does what is needed to do for the project, however there are a couple issues:
-
-"String convertedNumber = Double.toString(startingNumber, convertingNumber);" apparently does not work while "String convertedNumber = Integer.toString(startingNumber, convertingNumber);" does.
-
-I believe that Krause wants us to figure out how do the math in our program instead of using Integer.toString. 
-
-So while we can still use a good bit of the code here, we need to figure out how to do the math for any number into any base up to base 16.
-
-I think we can do this with a loop of some kind but I am not sure how we are going to handle decimals.
-
+*@Mike_Sers
+*@Pat_Hennessey
+*Date(02/02/19)
+*Lab2_baseConverter
+*CIS111B
 */
 
 import java.util.*;
 import javax.swing.*;   // imports the entirety of swing into the program. If avaliable I just use .* in case I need to use somehting else within the package.
 
-public class Lab2Testing_CIS111B    //   title of the program. Since this is the file I do testing in for the labs I just use LavXTesting. I also have all of my CIS111A stuff on my pc still, so I add _CIS111B so I don't resave over my old code.
+public class Lab2_baseConverter    //   title of the program. Since this is the file I do testing in for the labs I just use LavXTesting. I also have all of my CIS111A stuff on my pc still, so I add _CIS111B so I don't resave over my old code.
     
     {
    
@@ -31,9 +25,9 @@ public class Lab2Testing_CIS111B    //   title of the program. Since this is the
       
          {
          
-            int startingNumber = 0;
+            int startingNumber = 0; // initializing users input variable
             
-            int convertingNumber = 0;
+            int convertingNumber = 0; // initializing targetBase variable
             
             do
                
@@ -41,22 +35,21 @@ public class Lab2Testing_CIS111B    //   title of the program. Since this is the
                
                String startingNumberInput = JOptionPane.showInputDialog(null,"What non-negative whole number, in base 10, do you want to convert?");  // dialog box that asks the user to input the base 10 number and holds the number as a string.
                
-                  if(startingNumberInput.equals("")) 
+                  if(startingNumberInput.equals(""))  // comparing empty strings(no input)
                   
                         {
                         
-                        purpose();
+                        purpose();  // recalls purpose() to reprompt startingNumberInput
                         
-                  
                         }
                
-               startingNumber = Integer.parseInt(startingNumberInput);
+               startingNumber = Integer.parseInt(startingNumberInput); 
                
                if (startingNumber == 0)
              
                {
                
-                  JOptionPane.showMessageDialog(null, "0 will always be 0, no matter what base it is in.");
+                  JOptionPane.showMessageDialog(null, "0 will always be 0, no matter what base it is in."); // user enters 0
                   
                   convertMore();
                                    
@@ -70,33 +63,29 @@ public class Lab2Testing_CIS111B    //   title of the program. Since this is the
                
                String convertingNumberInput = JOptionPane.showInputDialog(null,"Please enter a positive whole number between 2 and 16 to use as the new base?");  // dialog box that asks the user to input the new base to convert startingNumberInput into.
                
-               convertingNumber = Integer.parseInt(convertingNumberInput);
+               convertingNumber = Integer.parseInt(convertingNumberInput); // reads in users targetBase int Integer
                
-               } while (convertingNumber < 2 || convertingNumber > 16);
+               } while (convertingNumber < 2 || convertingNumber > 16); // will repromt user with dialogBox
             
-            calculator(startingNumber, convertingNumber);
+            calculator(startingNumber, convertingNumber); // passing our new int startingNumber & int convertingNumber to be called into calculator()
          
          }
          
       public static void calculator(int x, int y)
       
          {
-            System.out.println(x + " " + y); // checking console to make sure correct variables are being passed (startingNumber, convertingNumnber)
-            
-            // int x -> startingNumber
-            // int y -> convertingNumber
+
+         ArrayList<String> printArrayList = new ArrayList<>(); // ArrayList for printing the array with converted Integers back into Strings
          
-         ArrayList<String> printArrayList = new ArrayList<>(); // ArrayList for printing the array with converted numbers to letters
-         
-         ArrayList<Integer> convertingArrayList = new ArrayList<>(); // ArrayList for conversion
+         ArrayList<Integer> convertingArrayList = new ArrayList<>(); // ArrayList for storing the remainder from calculator, then 
          
          ///////////////
          /// variable declaration
          ///////////////
          
-         int unchangingX = x;
+         int unchangingX = x; //inital value (startingNumber)
          
-         int unchangingY = y;
+         int unchangingY = y; //inital targetBase (convertingNumber)
          
          int remainder= 0; // for convertingArrayList.add(remainder)
          
@@ -107,84 +96,91 @@ public class Lab2Testing_CIS111B    //   title of the program. Since this is the
          ///////////////
          
          
-         ///////// Do-While Loop for storing remainders into array
-         do
+         ///////////////
+         /// do-while
+         ///////////////
+         do 
             {
             
             z = (x / y); // Quotient from integer division
             
             remainder = (x % y); // Remainder from integer division
             
-            convertingArrayList.add(remainder); // storing remainder into convertArray
+            convertingArrayList.add(remainder); // storing remainder into convertArray 
                         
-            x = z; // reassinging z to x for next itteration of division
-            
-            System.out.println("r = "+remainder);  //test print for remainder
-            System.out.println("quotient = "+z);   //test print for quotient
+            x = z; // reassinging z to x for next itteration of division (until condition is met)
             
             } while (x != 0);
-         ///////// End of Do-While Loop
-           
-               System.out.println(convertingArrayList); //[x, y, z] style print in wrong order (need to collection.reverseOrder)
+         ///////////////
+         ///end do-while
+         ///////////////         
             
-            
-         ///////// convertingArray(int) to printArray(strings)
+         //////////// 
+         ///convertingArray(int) to printArray(strings)
+         ///hexdeci handling by stringcomparison (.equals)
+         ///set and get for array element swaping
+         ////////////
          
             for (int i = 0; i < convertingArrayList.size(); i++) //reads in arrayList and compares characters greater than 10 and converts to corresponding letter
             {
                
                printArrayList.add(String.valueOf(convertingArrayList.get(i))); //in order to compare we must set each value from convertingArray (int) to printArray(string)
                
-               
                if((printArrayList.get(i)).equals("10"))
                {
                  
-                 printArrayList.set(i, "A");
+                 printArrayList.set(i, "A");                      //hexDec A
                   
                }
                else if((printArrayList.get(i)).equals("11"))
                {
                  
-                 printArrayList.set(i, "B");
+                 printArrayList.set(i, "B");                      //hexDec B
                   
                }
                else if((printArrayList.get(i)).equals("12"))
                {
                  
-                 printArrayList.set(i, "C");
+                 printArrayList.set(i, "C");                      //hexDec C
                   
                }
                else if((printArrayList.get(i)).equals("13"))
                {
                  
-                 printArrayList.set(i, "D");
+                 printArrayList.set(i, "D");                      //hexDec D
                   
                }
                else if((printArrayList.get(i)).equals("14"))
                {
                  
-                 printArrayList.set(i, "E");
+                 printArrayList.set(i, "E");                      //hexDec E
                   
                }
                else if((printArrayList.get(i)).equals("15"))
                {
                  
-                 printArrayList.set(i, "F");
+                 printArrayList.set(i, "F");                      //hexDec F
                   
                }
                
              
             }
                         
-            Collections.sort(printArrayList, Collections.reverseOrder());
-         
-            System.out.println(printArrayList); //test to show if subbed
+            Collections.reverse(printArrayList);
             
-            JOptionPane.showMessageDialog(null, "Original (Base10): " + unchangingX + "\n into (Base" + unchangingY + ") " + 
-                                          "\n Converted Number: " + printArrayList);
+            String resultString = "";
+            
+            for(int j = 0; j < printArrayList.size(); j++)
+            {
+               
+               printArrayList.get(j).toString();
+                  
+            }
+            
+            JOptionPane.showMessageDialog(null, "Your original (Base10): " + unchangingX + "\nInto (Base" + unchangingY + ") is" + 
+                                          "\nConverted Number: " + resultString);
 
-         
-         convertMore();
+         convertMore(); // if users wants to convert again
          
          System.exit(0);
          
