@@ -94,7 +94,9 @@ public class Lab2Testing_CIS111B    //   title of the program. Since this is the
          /// variable declaration
          ///////////////
          
-         int unchangingX = x; // not sure
+         int unchangingX = x;
+         
+         int unchangingY = y;
          
          int remainder= 0; // for convertingArrayList.add(remainder)
          
@@ -122,54 +124,69 @@ public class Lab2Testing_CIS111B    //   title of the program. Since this is the
             
             } while (x != 0);
          ///////// End of Do-While Loop
-            
-                  
+           
                System.out.println(convertingArrayList); //[x, y, z] style print in wrong order (need to collection.reverseOrder)
             
             
-         ///////// Hexdeci handling
+         ///////// convertingArray(int) to printArray(strings)
+         
             for (int i = 0; i < convertingArrayList.size(); i++) //reads in arrayList and compares characters greater than 10 and converts to corresponding letter
             {
-            
-               if(convertingArrayList.get(i) == 10)
-               {
                
-                  String.valueOf(convertingArrayList.get(i));
+               printArrayList.add(String.valueOf(convertingArrayList.get(i))); //in order to compare we must set each value from convertingArray (int) to printArray(string)
+               
+               
+               if((printArrayList.get(i)).equals("10"))
+               {
+                 
+                 printArrayList.set(i, "A");
+                  
+               }
+               else if((printArrayList.get(i)).equals("11"))
+               {
+                 
+                 printArrayList.set(i, "B");
+                  
+               }
+               else if((printArrayList.get(i)).equals("12"))
+               {
+                 
+                 printArrayList.set(i, "C");
+                  
+               }
+               else if((printArrayList.get(i)).equals("13"))
+               {
+                 
+                 printArrayList.set(i, "D");
+                  
+               }
+               else if((printArrayList.get(i)).equals("14"))
+               {
+                 
+                 printArrayList.set(i, "E");
+                  
+               }
+               else if((printArrayList.get(i)).equals("15"))
+               {
+                 
+                 printArrayList.set(i, "F");
                   
                }
                
-               else if(convertingArrayList.get(i) == 11)
-               
-               {
-                  
-                  
-               }
-               
-                  // System.out.println(i); //checks make sure its looping the correct amount of times
-                           
+             
             }
-      
+                        
+            Collections.sort(printArrayList, Collections.reverseOrder());
+         
+            System.out.println(printArrayList); //test to show if subbed
+            
+            JOptionPane.showMessageDialog(null, "Original (Base10): " + unchangingX + "\n into (Base" + unchangingY + ") " + 
+                                          "\n Converted Number: " + printArrayList);
+
          
          convertMore();
          
          System.exit(0);
-         /*
-         
-         Things to add:
-            
-            >  Modulous Division finding r
-            
-            >  Regular Division finding z
-            
-            >  Loop to hold the remainder (r)
-            
-               > arrayList
-            
-            >  Loop to hold the new quotient (z)
-            
-            >  Way to make x be the new z
-            
-         */
          
          }
          
