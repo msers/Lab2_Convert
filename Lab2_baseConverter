@@ -168,17 +168,17 @@ public class Lab2_baseConverter    //   title of the program. Since this is the 
                         
             Collections.reverse(printArrayList);
             
-            String resultString = "";
+            String a = "";
             
             for(int j = 0; j < printArrayList.size(); j++)
             {
                
-               printArrayList.get(j).toString();
+               a = "" + a +printArrayList.get(j);
                   
             }
             
             JOptionPane.showMessageDialog(null, "Your original (Base10): " + unchangingX + "\nInto (Base" + unchangingY + ") is" + 
-                                          "\nConverted Number: " + resultString);
+                                          "\nConverted Number: " + a);
 
          convertMore(); // if users wants to convert again
          
